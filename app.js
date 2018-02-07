@@ -48,6 +48,10 @@ app.get('/', (req, res) => {
     res.send('Invalid endport');
 });
 
+app.get('*', () => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 // Start router
 app.listen(port, () => {
     console.log('Server startet on port: ' + port);

@@ -12,10 +12,23 @@
         </ul>
 
         <ul class="navbar-nav mt-2 mt-md-0">
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+          <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+            <a [routerLink]="['/dashboard']" class="text-white">Dashboard</a>
+          </li>
+
+          <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+              <a [routerLink]="['/profile']" class="text-white">Profile</a>
+            </li>
+
+          <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
             <a [routerLink]="['/login']" class="text-white">Login</a>
           </li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+
+          <li *ngIf="authService.loggedIn()" class="nav-item">
+            <a (click)="onLogoutClick()" href="#" class="text-white">Logout</a>
+          </li>
+
+          <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
             <a [routerLink]="['/register']" class="text-white">Register</a>
           </li>
         </ul>
